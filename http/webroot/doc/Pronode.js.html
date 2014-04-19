@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Pronode.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Pronode.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ *
+ * Pronode
+ *
+ **/
+
+/** @namespace Pronode */
+var Pronode = {};
+
+/* Pronode Application */
+(function () {
+	/**
+	 * Pronode Application
+	 * @constructor
+	 * @param name {string} - Application name
+	 * @param app {Object} - Data provided by the Pronode Server
+	 */
+    Pronode.Application = function (name, data) {
+        this.name = name;
+        this.rawData = data;
+
+        this.status = (!isNaN(data.status) ? data.status : Pronode.Application.UNKNOWN_STATUS);
+        this.ressource = {
+            cpu: data.cpu || -1,
+            memory: data.memory || -1
+        };
+        this.user = data.user || 'nobody';
+        this.group = data.group || 'nogroup';
+    };
+
+    /**
+	 * Start application
+	 */
+    Pronode.Application.prototype.start = function () {
+        Pronode.socket.emit('start application', this.name, function (err) {
+
+        });
+    };
+
+    /**
+	 * Stop application
+     */
+    Pronode.Application.prototype.stop = function () {
+        Pronode.socket.emit('stop application', this.name, function (data) {
+
+        });
+    };
+
+
+    /**
+     * @constant {number}
+     * @default
+     */
+    Pronode.Application.APPLICATION_RUN = 2;
+
+    /**
+     * @constant {number}
+     * @default
+     */
+    Pronode.Application.APPLICATION_STOP = 1;
+
+    /**
+     * @constant {number}
+     * @default
+     */
+    Pronode.Application.APPLICATION_ERROR = 0;
+
+    /**
+     * @constant {?number}
+     * @default
+     */
+    Pronode.Application.UNKNOWN_STATUS = null;
+}).call(this);
+
+/* Update Application Table */
+(function(){
+	/**
+	 * Contain some DOM Elements
+	 * @namespace DOM
+	 * @memberOf Pronode
+	 */
+	Pronode.DOM = {};
+	/**
+	 * Application Table
+	 * @var {Object} ApplicationTable
+	 * @memberOf Pronode.DOM 
+	 */
+	Pronode.DOM.ApplicationTable = document.getElementById('application-table');
+
+	/**
+	 * Refresh Application Table
+	 * @param applications {Pronode.Application[]} - Applications List
+	 * @param [cleanTable=false] {boolean} - If true, the function will clean the table before append applications
+	 */
+	Pronode.refreshApplicationTable = function(applications, cleanTable){
+		if(cleanTable){
+			Pronode.DOM.ApplicationTable.querySelector('tbody').innerHTML = '';
+		}
+
+		for (var i = 0; i &lt; applications.length; i++) {
+			var app = applications[i];
+
+			var row = document.createElement('tr'),
+				name = document.createElement('th'),
+				status = document.createElement('th'),
+				statusLabel = document.createElement('span'),
+				ressource = document.createElement('th'),
+				user = document.createElement('th');
+
+			name.innerHTML = app.name;
+
+			statusLabel.classList.add('label');
+
+			console.log(app.name, app.status);
+			switch(app.status) {
+				case Pronode.Application.APPLICATION_RUN:
+					statusLabel.innerHTML = 'RUN';
+					statusLabel.classList.add('label-success');
+					row.classList.add('success');
+					break;
+
+				case Pronode.Application.APPLICATION_STOP:
+					statusLabel.innerHTML = 'STOP';
+					statusLabel.classList.add('label-active');
+					row.classList.add('active');
+					break;
+
+				case Pronode.Application.APPLICATION_ERROR:
+					statusLabel.innerHTML = 'ERROR';
+					statusLabel.classList.add('label-danger');
+					row.classList.add('danger');
+					break;
+
+				default:
+					statusLabel.innerHTML = '?';
+					statusLabel.classList.add('label-active');
+					row.classList.add('active');
+					break;
+			}
+
+			ressource.innerHTML = app.ressource.cpu + '% - ' + app.ressource.memory + '%';
+			user.innerHTML = app.user + ' (' + app.group + ')';
+
+			row.appendChild(name);
+			status.appendChild(statusLabel);
+			row.appendChild(status);
+			row.appendChild(ressource);
+			row.appendChild(user);
+
+			Pronode.DOM.ApplicationTable.querySelector('tbody').appendChild(row);
+		}
+	};
+}).call(this);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Pronode.Application.html">Application</a></li></ul><h3>Namespaces</h3><ul><li><a href="Pronode.html">Pronode</a></li><li><a href="Pronode.DOM.html">DOM</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Sat Apr 19 2014 21:16:51 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

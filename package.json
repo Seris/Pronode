@@ -1,0 +1,25 @@
+{
+  "name": "ProNode",
+  "version": "0.0.1",
+  "description": "ProNode",
+  "main": "app.js",
+  "author": {
+    "name": "Seris",
+    "email": "seerriss@gmail.com"
+  },
+  "dependencies": {
+    "colors": "^0.6.2",
+    "usage": "^0.3.9",
+    "chroot": "^0.1.6",
+    "longjohn": "^0.2.4",
+    "promise": "^4.0.0",
+    "express": "^4.0.0",
+    "posix": "^1.0.3",
+    "socket.io": "^0.9.16",
+    "handlebars": "^2.0.0-alpha.2"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "pronode": "./pronode.js"
+  }
+}

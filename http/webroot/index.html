@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pronode - Administration</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/pronode.css">
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Pronode</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Applications</a>
+				</li>
+				<li><a href="#">Gérer</a>
+					<li>
+			</ul>
+			<ul class="nav navbar-right navbar-nav">
+				<li>
+					<a href="#" title="Connecté en tant que Seris">
+						<i class="glyphicon glyphicon-user"></i> Seris
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container app-container">
+		<h2>Listage des applications</h2>
+		<table class="table table-bordered table-condensed" id="application-table">
+			<thead>
+				<tr>
+					<th data-col="name">Nom de l'application</th>
+					<th data-col="status">Status</th>
+					<th data-col="user">Utilisateur</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="success">
+					<td>Production</td>
+					<td><span class="label label-success">OK</span></td>
+					<td>radiobrony</td>
+				</tr>
+				<tr class="danger">
+					<td>Test</td>
+					<td><span class="label label-danger">ERROR</span></td>
+					<td>radiobrony</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="js/Pronode.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
