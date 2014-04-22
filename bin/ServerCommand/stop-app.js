@@ -19,7 +19,7 @@ module.exports = function(app){
         return self.socket.end('display warn', "L'application n'est pas (encore) lancée !");
     }
 
-    console.log("Tentative de fermeture de l'application", app.name);
+    logger.log("Tentative de fermeture de l'application", app.name);
     self.socket.send('display log', "Tentative de fermeture de l'application " + app.name);
 
     CurrentApp.stop();

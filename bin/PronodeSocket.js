@@ -40,7 +40,7 @@ var PronodeSocket = function(socket){
 
     // Error
     socket.on('error', function(err){
-        console.error(err);
+        logger.error(err);
     });
 
     self.on('error', function(err){

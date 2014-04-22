@@ -26,7 +26,6 @@ var Application = function(name, options){
         this.name = name;
         // Entry Point
         this.entry_point = options.entry_point;
-        console.log(options.entry_point);
         // Working Folder
         this.cwd = options.cwd || path.dirname(this.entry_point);
         // Environment
@@ -69,10 +68,10 @@ Application.prototype._spawnWrapper = function(){
     this.process.stderr.pipe(this.logStream.stderr);
 
     // When the process exit
-    this.process.once('exit', function(){
+    this.process.once('exit', function(code, signal){
         self.started = false;
         this.emit('stop', null, code, signal);
-        Pronode.ev.emit('application exit', CurrentApp);
+        Pronode.ev.emit('application exit', self);
         self.domain.dispose();
     });
 

@@ -7,7 +7,6 @@ var child_process = require('child_process'),
     path = require('path');
 
 process.on('message', function(message){
-    console.log(message);
     switch(message.event){
         case 'start-app':
             // Generate path from bin folder
@@ -51,7 +50,7 @@ process.on('message', function(message){
 
             process.removeAllListeners('message');
 
-            console.info('[' + new Date() + ']', 'Lancement de l\'application (' + process.argv[2] + ')\n\r');
+            logger.info('[' + new Date() + ']', 'Lancement de l\'application (' + process.argv[2] + ')\n\r');
             require(process.argv[2]);
             process.argv[2].slice(2, 1);
             break;

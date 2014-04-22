@@ -29,7 +29,7 @@ server.listen(socket, function(){
         global.process.send('server-ready');
     } catch(e){}
 
-    console.info('TCP/IP server listen on ' + socket.underline);
+    logger.info('TCP/IP server listen on ' + socket.underline);
 });
 
 // When the process exit, delete the .sock file
@@ -41,6 +41,6 @@ process.on('exit', function(){
 
 // Log when an error occured and exit the process
 server.on('error', function(err){
-    console.error('Erreur lors du lancement du serveur !\n\r' + err.stack.inverse);
+    logger.error('Erreur lors du lancement du serveur !\n\r' + err.stack.inverse);
     process.exit(1);
 });

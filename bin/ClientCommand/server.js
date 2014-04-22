@@ -19,7 +19,7 @@ module.exports.func = function(argv){
 
                 // Launch the server process
                 argv.shift();
-                var server = child_process.spawn(process.execPath, [process.Pronode.main('server'), '--production'].concat(argv), {
+                var server = child_process.spawn(process.execPath, [process.Pronode.main('server')].concat(argv), {
                     detached: true,
                     stdio: ['ipc']
                 });
@@ -39,7 +39,7 @@ module.exports.func = function(argv){
                     server.disconnect();
                     server.unref();
                     if(data.toString('utf8') === 'server-ready'){
-                        console.info('Le serveur a bien été lancé', '[pid=' + server.pid + ']');
+                        console.info('Le serveur a bien été lancé', ('[pid=' + server.pid.toString().underline + ']').yellow);
                         process.exit(0);
                     }
                 });
