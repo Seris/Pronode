@@ -29,6 +29,7 @@ module.exports = function(stdout, stderr){
             console.log.apply(console, args);
         }
     };
+
     logger.info = function(){
         var args = new Array();
         args[0] = ('[' + new Date() + '] (pronode) Info:').cyan;
@@ -45,6 +46,7 @@ module.exports = function(stdout, stderr){
             console.info.apply(console, args);
         }
     };
+
     logger.warn = function(){
         var args = new Array();
         args[0] = ('[' + new Date() + '] (pronode) Warn:').yellow;
@@ -61,6 +63,7 @@ module.exports = function(stdout, stderr){
             console.warn.apply(console, args);
         }
     };
+    
     logger.error = function(){
         var args = new Array();
         args[0] = ('[' + new Date() + '] (pronode) Error:').red;

@@ -36,11 +36,6 @@ process.on('message', function(message){
             posix.seteuid(message.data.user || 'nobody');
             posix.setegid(message.data.group || 'nogroup');
 
-            // Logger
-            if(message.pronodeLogStyle){
-                require(bin('Logger'));
-            }
-
             // Clear module cache
             for(var p in require.cache){
                 if(require.cache.hasOwnProperty(p)){
@@ -50,9 +45,10 @@ process.on('message', function(message){
 
             process.removeAllListeners('message');
 
-            logger.info('[' + new Date() + ']', 'Lancement de l\'application (' + process.argv[2] + ')\n\r');
-            require(process.argv[2]);
+            console.info('[' + new Date() + ']', 'Lancement de l\'application (' + process.argv[2] + ')\n\r');
+            var path = process.argv[2];
             process.argv[2].slice(2, 1);
+            require(path);
             break;
     }
 });
