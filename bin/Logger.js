@@ -20,7 +20,10 @@ module.exports = function(stdout, stderr){
             args[i + 1] = arguments[i];
         }
         if(stdout){
-            fs.writeFileSync(this.stdout, args.join(' ') + '\n\r', 'utf8');
+            fs.writeFileSync(this.stdout, args.join(' ') + '\n\r', {
+                encoding: 'utf8',
+                flag: 'a'
+            });
         }
         console.log.apply(console, args);
     };
@@ -31,7 +34,10 @@ module.exports = function(stdout, stderr){
             args[i + 1] = arguments[i];
         }
         if(stdout){
-            fs.writeFileSync(this.stdout, args.join(' ') + '\n\r', 'utf8');
+            fs.writeFileSync(this.stdout, args.join(' ') + '\n\r', {
+                encoding: 'utf8',
+                flag: 'a'
+            });
         }
         console.info.apply(console, args);
     };
@@ -42,7 +48,10 @@ module.exports = function(stdout, stderr){
             args[i + 1] = arguments[i];
         }
         if(stderr){
-            fs.writeFileSync(this.stderr, args.join(' ') + '\n\r', 'utf8');
+            fs.writeFileSync(this.stderr, args.join(' ') + '\n\r', {
+                encoding: 'utf8',
+                flag: 'a'
+            });
         }
         console.warn.apply(console, args);
     };
@@ -53,7 +62,10 @@ module.exports = function(stdout, stderr){
             args[i + 1] = arguments[i];
         }
         if(stderr){
-            fs.writeFileSync(this.stderr, args.join(' ') + '\n\r', 'utf8');
+            fs.writeFileSync(this.stderr, args.join(' ') + '\n\r', {
+                encoding: 'utf8',
+                flag: 'a'
+            });
         }
         console.error.apply(console, args);
     };
