@@ -25,7 +25,9 @@ module.exports = function(stdout, stderr){
                 flag: 'a'
             });
         }
-        console.log.apply(console, args);
+        if(process.stdout.isTTY){
+            console.log.apply(console, args);
+        }
     };
     logger.info = function(){
         var args = new Array();
@@ -39,7 +41,9 @@ module.exports = function(stdout, stderr){
                 flag: 'a'
             });
         }
-        console.info.apply(console, args);
+        if(process.stdout.isTTY){
+            console.info.apply(console, args);
+        }
     };
     logger.warn = function(){
         var args = new Array();
@@ -53,7 +57,9 @@ module.exports = function(stdout, stderr){
                 flag: 'a'
             });
         }
-        console.warn.apply(console, args);
+        if(process.stderr.isTTY){
+            console.warn.apply(console, args);
+        }
     };
     logger.error = function(){
         var args = new Array();
@@ -67,6 +73,8 @@ module.exports = function(stdout, stderr){
                 flag: 'a'
             });
         }
-        console.error.apply(console, args);
+        if(process.stderr.isTTY){
+            console.error.apply(console, args);
+        }
     };
 };
