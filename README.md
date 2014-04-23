@@ -10,6 +10,8 @@ npm link
 cd && mkdir .pronode && cd .pronode && touch config.json
 ```
 Pronode is a daemon just like Apache and must be started as root.
+In your .pronode folder, create a config.json file.
++ ~httpPort: Define the port of the http server (default = process.env.NODE_PORT or 80)
 _________________
 ### Command List
 ##### pronode server start
@@ -24,5 +26,6 @@ Create a folder which the name is your application name in ~/.pronode and create
 
 + *entry_point: Path to the main file of your application
 + ~chroot : Path for chroot
-+ ~user : Start the application with this user (default => 'nobody') __/!\\ As nobody, the application could not write at all. /!\\__
++ ~user : Start the application with this user (default => 'nobody')
+__/!\\ As nobody, the application could not write at all. /!\\__
 + ~group : Start the application with this group (default => 'nogroup')
