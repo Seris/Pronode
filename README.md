@@ -12,13 +12,16 @@ cd && mkdir .pronode && cd .pronode && touch config.json
 Pronode is a daemon just like Apache and must be started as root.
 In your .pronode folder, create a config.json file.
 + ~httpPort: Define the port of the http server (default = process.env.NODE_PORT or 80)
+
 _________________
+
 ### Command List
 ##### pronode server start
 Start the pronode server
 
 ##### pronode [start/restart/stop] &lt;app&gt;
 Start/Restart/Stop an configured Node.JS application
+
 _________________
 ### How to configure an application
 Create a folder which the name is your application name in ~/.pronode and create a config.json inside.
