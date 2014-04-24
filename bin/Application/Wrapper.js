@@ -33,8 +33,8 @@ process.on('message', function(message){
 
             // Set user
             var posix = require('posix');
-            posix.seteuid(message.data.user || 'nobody');
             posix.setegid(message.data.group || 'nogroup');
+            posix.seteuid(message.data.user || 'nobody');
 
             // Clear module cache
             for(var p in require.cache){
