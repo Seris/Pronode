@@ -24,7 +24,7 @@ Start/Restart/Stop a configured Node.JS application
 
 _________________
 ### How to configure an application
-Create a folder which name is your application name in ~/.pronode and create a config.json inside.
+Create a folder which name is your application name in ~/.pronode/applications and create a config.json inside.
 (*key = required / ~key = optional)
 
 + *entry_point: Path to the main file of your application
